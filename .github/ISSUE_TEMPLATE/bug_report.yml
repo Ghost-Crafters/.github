@@ -1,0 +1,78 @@
+name: Bug report
+description: Something in a pack, add-on or tool doesn't work the way it should.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting this. Security problems go through private reporting instead (Security tab, "Report a vulnerability"), so please don't put them here. The [security policy](https://github.com/Ghost-Crafters/.github/blob/master/SECURITY.md) has the details.
+  - type: dropdown
+    id: edition
+    attributes:
+      label: Edition
+      options:
+        - Bedrock
+        - Java
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: The version of the pack or tool, from the file name you downloaded or its settings screen.
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: input
+    id: minecraft
+    attributes:
+      label: Minecraft version
+      placeholder: "1.26.50"
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Where you play
+      options:
+        - Windows
+        - Android
+        - iOS or iPadOS
+        - Xbox
+        - PlayStation
+        - Nintendo Switch
+        - Bedrock Dedicated Server
+        - Realms
+        - Java on Windows, macOS or Linux
+        - Other (say which below)
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: What you did, in order, starting from loading the world or starting the server. Say which other packs or add-ons were on.
+      placeholder: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Content log or server console output from around the time it happened.
+      render: text

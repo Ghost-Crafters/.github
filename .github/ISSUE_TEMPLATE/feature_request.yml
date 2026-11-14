@@ -1,0 +1,28 @@
+name: Feature request
+description: An idea for something new, or a change to something that exists.
+labels: ["feature"]
+body:
+  - type: dropdown
+    id: edition
+    attributes:
+      label: Edition
+      options:
+        - Bedrock
+        - Java
+        - Both
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What you're trying to do
+      description: What you want to do in your world or on your server, and where the pack or tool gets in the way today.
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Your idea
+      description: How it would work in game. Screenshots or sketches are welcome.
+    validations:
+      required: true
