@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security problem
+    url: https://github.com/Ghost-Crafters/.github/blob/master/SECURITY.md
+    about: Report it privately from the repo's Security tab, not as a public issue.
+  - name: All Ghost-Crafters projects
+    url: https://github.com/Ghost-Crafters
+    about: Every pack, add-on and tool, each with its own releases.
