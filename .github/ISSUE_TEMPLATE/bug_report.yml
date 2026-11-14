@@ -5,7 +5,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for reporting this. Security problems go through private reporting instead (Security tab, "Report a vulnerability"), so please don't put them here.
+        Thanks for reporting this. Security problems go through private reporting instead (Security tab, "Report a vulnerability"), so please don't put them here. The [security policy](https://github.com/Ghost-Crafters/.github/blob/master/SECURITY.md) has the details.
   - type: dropdown
     id: edition
     attributes:
