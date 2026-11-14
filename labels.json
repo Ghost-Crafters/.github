@@ -1,0 +1,95 @@
+{
+  "type": [
+    {
+      "name": "bug",
+      "color": "d73a4a",
+      "description": "Something is broken"
+    },
+    {
+      "name": "feature",
+      "color": "1a7f37",
+      "description": "New capability"
+    },
+    {
+      "name": "enhancement",
+      "color": "0969da",
+      "description": "Improvement to something that exists"
+    },
+    {
+      "name": "docs",
+      "color": "8250df",
+      "description": "Documentation"
+    },
+    {
+      "name": "performance",
+      "color": "fbca04",
+      "description": "Speed, memory or size"
+    },
+    {
+      "name": "test",
+      "color": "0e8a16",
+      "description": "A test, spike or check to run"
+    },
+    {
+      "name": "security",
+      "color": "b60205",
+      "description": "Safety of servers, worlds and player data"
+    },
+    {
+      "name": "tooling",
+      "color": "5319e7",
+      "description": "Build, release, CI and repo tooling"
+    }
+  ],
+  "edition": [
+    {
+      "name": "edition:bedrock",
+      "color": "1d76db",
+      "description": "Bedrock Edition"
+    },
+    {
+      "name": "edition:java",
+      "color": "e99695",
+      "description": "Java Edition"
+    },
+    {
+      "name": "edition:universal",
+      "color": "5f6b7a",
+      "description": "One build for both editions"
+    }
+  ],
+  "priority": [
+    {
+      "name": "priority:high",
+      "color": "b60205",
+      "description": "Blocks the milestone"
+    },
+    {
+      "name": "priority:medium",
+      "color": "d93f0b",
+      "description": "Needed for the milestone"
+    },
+    {
+      "name": "priority:low",
+      "color": "c5def5",
+      "description": "Nice to have"
+    }
+  ],
+  "effort": [
+    {
+      "name": "effort:s",
+      "color": "e6f4ea",
+      "description": "Under a day"
+    },
+    {
+      "name": "effort:m",
+      "color": "bfe5bf",
+      "description": "A few days"
+    },
+    {
+      "name": "effort:l",
+      "color": "7bc67e",
+      "description": "A week or more"
+    }
+  ]
+}
