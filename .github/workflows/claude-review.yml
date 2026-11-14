@@ -3,15 +3,26 @@ name: Claude review
 on:
   pull_request:
     types: [opened, synchronize, ready_for_review, reopened]
+  issue_comment:
+    types: [created]
   workflow_call:
 
 permissions:
   contents: read
 
+concurrency:
+  group: claude-review-${{ github.event.pull_request.number || github.event.issue.number }}
+  cancel-in-progress: true
+
 jobs:
   review:
     name: Claude review
-    if: github.event.pull_request.draft == false && github.event.pull_request.head.repo.full_name == github.repository
+    if: |
+      (github.event_name == 'pull_request' && github.event.pull_request.draft == false &&
+       github.event.pull_request.head.repo.full_name == github.repository) ||
+      (github.event_name == 'issue_comment' && github.event.issue.pull_request &&
+       startsWith(github.event.comment.body, '@claude review') &&
+       contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association))
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
@@ -34,7 +45,7 @@ jobs:
         id: pr
         env:
           GH_TOKEN: ${{ github.token }}
-          NUMBER: ${{ github.event.pull_request.number }}
+          NUMBER: ${{ github.event.pull_request.number || github.event.issue.number }}
         run: |
           read -r sha base head_repo < <(gh pr view "$NUMBER" -R "$GITHUB_REPOSITORY" \
             --json headRefOid,baseRefName,headRepository,headRepositoryOwner \
@@ -53,7 +64,7 @@ jobs:
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          track_progress: true
+          track_progress: ${{ github.event_name == 'pull_request' }}
           prompt: |
             REPO: ${{ github.repository }}
             PR NUMBER: ${{ steps.pr.outputs.number }}
