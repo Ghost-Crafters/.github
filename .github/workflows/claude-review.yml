@@ -96,7 +96,7 @@ jobs:
             or "no findings" when there are none.
             Return the structured result with the commit you reviewed and the counts.
           claude_args: |
-            --model claude-opus-5-5
+            --model claude-sonnet-5-5
             --allowedTools "Read,Grep,Glob,mcp__github_inline_comment__create_inline_comment,Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*),Bash(gh issue view:*),Bash(git log:*),Bash(git diff:*),Bash(git show:*)"
             --json-schema '{"type":"object","properties":{"commit":{"type":"string"},"p0":{"type":"integer","minimum":0},"p1":{"type":"integer","minimum":0},"p2":{"type":"integer","minimum":0},"p3":{"type":"integer","minimum":0},"summary":{"type":"string"}},"required":["commit","p0","p1","p2","p3","summary"]}'
       - name: Check the review result
