@@ -13,7 +13,7 @@ WRAPPER = TOOLS / "sync-labels.sh"
 # A stand-in gh: serves the labels in $FAKE_STATE (a JSON list) and records every call.
 # Writes update the state, so a second run sees the result of the first.
 STUB = r'''#!/usr/bin/env python3
-import json, os, sys
+import csv, json, os, sys
 a = sys.argv[1:]
 state = os.environ["FAKE_STATE"]
 with open(os.environ["FAKE_LOG"], "a") as f:
@@ -25,7 +25,9 @@ if a[:2] == ["label", "list"]:
     print(json.dumps(labels))
 elif a[0] in ("issue", "pr") and a[1] == "list":
     used = json.loads(os.environ.get("FAKE_USED", "[]"))
-    print(json.dumps([{"number": 1}] if opt("--label") in used else []))
+    # gh reads --label as CSV and wants every label in it, like the real flag.
+    wanted = next(csv.reader([opt("--label")]))
+    print(json.dumps([{"number": 1}] if all(w in used for w in wanted) and len(wanted) == 1 else []))
 elif a[:2] in (["label", "create"], ["label", "edit"]):
     labels = [l for l in labels if l["name"].lower() != a[2].lower()]
     # gh label edit keeps the name unless --name is given.
@@ -122,6 +124,13 @@ class SyncLabels(unittest.TestCase):
         self.run_tool()
         self.assertFalse([w for w in self.writes() if "delete" in w])
         self.assertIn("area:x", [l["name"] for l in json.loads(self.state.read_text())])
+
+    def test_prune_keeps_a_used_label_with_a_comma_in_its_name(self):
+        self.set_repo([{"name": "customer,reported", "color": "ffffff", "description": ""},
+                       {"name": 'say "hi", please', "color": "ffffff", "description": ""}])
+        self.env["FAKE_USED"] = json.dumps(["customer,reported", 'say "hi", please'])
+        self.run_tool("--prune")
+        self.assertFalse([w for w in self.writes() if w.startswith("label delete")])
 
     def test_prune_deletes_unused_but_keeps_labels_with_issues(self):
         self.set_repo([{"name": "unused", "color": "ffffff", "description": ""},

@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Create or update the labels from labels.json in one repo, using the gh CLI."""
 import argparse
+import csv
+import io
 import json
 import subprocess
 import sys
@@ -43,9 +45,16 @@ def plan(wanted, existing, prune):
     return changes
 
 
+def csv_field(name):
+    """gh reads --label as a CSV list, so a name with a comma or quote is sent as one quoted field."""
+    buf = io.StringIO()
+    csv.writer(buf, lineterminator="").writerow([name])
+    return buf.getvalue()
+
+
 def in_use(repo, name):
     for kind in ("issue", "pr"):
-        out = gh(kind, "list", "-R", repo, "--label", name, "--state", "all",
+        out = gh(kind, "list", "-R", repo, "--label", csv_field(name), "--state", "all",
                  "--limit", "1", "--json", "number")
         if json.loads(out):
             return True
