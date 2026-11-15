@@ -44,9 +44,9 @@ jobs:
           jq -r .body "$RUNNER_TEMP/issue.json" > "$body_file"
           attached=$(jq -r '.labels[].name' "$RUNNER_TEMP/issue.json")
           label=$(python3 tools/edition_label.py "$body_file")
-          # Only bug reports from the form have the Edition heading; anything else is left alone.
+          # Only issues from the bug report and feature request forms have the Edition heading; anything else is left alone.
           if [ -z "$label" ] && ! grep -q '^### Edition[[:space:]]*$' "$body_file"; then
-            echo "Not a bug report from the form, nothing to label."
+            echo "Not an issue from the forms, nothing to label."
             exit 0
           fi
           # Only labels the issue has are removed, so a failed removal is a real error and stops the job.
@@ -56,7 +56,7 @@ jobs:
             fi
           done
           if [ -z "$label" ]; then
-            echo "No edition answer in the report, edition labels removed."
+            echo "No edition answer in the issue, edition labels removed."
             exit 0
           fi
           gh issue edit "$ISSUE_NUMBER" --add-label "$label"
