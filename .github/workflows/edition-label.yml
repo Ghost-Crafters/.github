@@ -20,6 +20,9 @@ permissions:
 jobs:
   label:
     runs-on: ubuntu-latest
+    concurrency:
+      group: edition-label-${{ github.repository }}-${{ github.event.issue.number }}
+      cancel-in-progress: false
     steps:
       # Only the parser from this repo is checked out. The caller's code and the issue text are never run.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -29,16 +32,26 @@ jobs:
           sparse-checkout: tools/edition_label.py
           sparse-checkout-cone-mode: false
           persist-credentials: false
-      - name: Add the edition label
+      - name: Set the edition label
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
-          ISSUE_BODY: ${{ github.event.issue.body }}
         run: |
-          label=$(python3 tools/edition_label.py)
+          # Read the current issue, not the event payload, so a queued older event can't bring back an old answer.
+          body_file="$RUNNER_TEMP/issue-body.txt"
+          gh issue view "$ISSUE_NUMBER" --json body --jq .body > "$body_file"
+          label=$(python3 tools/edition_label.py "$body_file")
           if [ -z "$label" ]; then
-            echo "No edition answer in the issue, nothing to label."
+            # Only bug reports from the form have the Edition heading. Without an answer, drop any edition label.
+            if ! grep -q '^### Edition[[:space:]]*$' "$body_file"; then
+              echo "Not a bug report from the form, nothing to label."
+              exit 0
+            fi
+            echo "No edition answer in the report, removing edition labels."
+            for other in edition:bedrock edition:java; do
+              gh issue edit "$ISSUE_NUMBER" --remove-label "$other" 2>/dev/null || true
+            done
             exit 0
           fi
           for other in edition:bedrock edition:java; do

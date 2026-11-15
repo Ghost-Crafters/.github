@@ -31,6 +31,7 @@ jobs:
           days-before-pr-stale: -1
           days-before-pr-close: -1
           remove-stale-when-updated: true
+          remove-pr-stale-when-updated: false
           stale-issue-message: >
             This bug report has been waiting for a reply for 30 days. If it
             still happens, add a comment with the details and it stays open.

@@ -34,7 +34,8 @@ def plan(wanted, existing, prune):
         elif (current["color"].lower() != label["color"].lower()
               or (current.get("description") or "") != label["description"]
               or current["name"] != label["name"]):
-            changes.append(("update", label))
+            # Keep the spelling that exists on the repo, so gh can find it, and rename it with --name.
+            changes.append(("update", dict(label, existing_name=current["name"])))
     if prune:
         for key, label in have.items():
             if key not in names:
@@ -76,8 +77,12 @@ def main(argv=None):
         if action == "delete":
             gh("label", "delete", name, "-R", args.repo, "--yes")
         else:
-            gh("label", "create" if action == "create" else "edit", name, "-R", args.repo,
-               "--color", label["color"], "--description", label["description"])
+            if action == "create":
+                gh("label", "create", name, "-R", args.repo,
+                   "--color", label["color"], "--description", label["description"])
+            else:
+                gh("label", "edit", label["existing_name"], "-R", args.repo, "--name", name,
+                   "--color", label["color"], "--description", label["description"])
     print(f"{done} change(s){' (dry run, nothing written)' if args.dry_run else ''}")
     return 0
 

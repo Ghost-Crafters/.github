@@ -28,7 +28,10 @@ elif a[0] in ("issue", "pr") and a[1] == "list":
     print(json.dumps([{"number": 1}] if opt("--label") in used else []))
 elif a[:2] in (["label", "create"], ["label", "edit"]):
     labels = [l for l in labels if l["name"].lower() != a[2].lower()]
-    labels.append({"name": a[2], "color": opt("--color"), "description": opt("--description")})
+    # gh label edit keeps the name unless --name is given.
+    new_name = opt("--name") if "--name" in a else (a[2] if a[1] == "create" else next(
+        (l["name"] for l in json.load(open(state)) if l["name"].lower() == a[2].lower()), a[2]))
+    labels.append({"name": new_name, "color": opt("--color"), "description": opt("--description")})
     json.dump(labels, open(state, "w"))
 elif a[:2] == ["label", "delete"]:
     labels = [l for l in labels if l["name"] != a[2]]
@@ -91,6 +94,20 @@ class SyncLabels(unittest.TestCase):
         self.assertIn("update  bug", out)
         self.assertNotIn("edition:java", out)
         self.assertEqual(len(self.writes()), 1)
+
+    def test_case_only_difference_renames_with_name_flag(self):
+        self.set_repo([{"name": "Bug", "color": "d73a4a", "description": "Something is broken"},
+                       {"name": "edition:java", "color": "e99695", "description": "Java Edition"}])
+        self.run_tool()
+        edits = [w for w in self.writes() if w.startswith("label edit")]
+        self.assertEqual(len(edits), 1)
+        self.assertTrue(edits[0].startswith("label edit Bug "), edits[0])
+        self.assertIn("--name bug", edits[0])
+        self.assertIn("bug", [l["name"] for l in json.loads(self.state.read_text())])
+        self.log.write_text("")
+        out = self.run_tool()
+        self.assertIn("0 change(s)", out)
+        self.assertEqual(self.writes(), [])
 
     def test_dry_run_lists_and_writes_nothing(self):
         self.set_repo([{"name": "old", "color": "ffffff", "description": ""}])
