@@ -36,7 +36,7 @@ This Code of Conduct applies within all community spaces, and also applies when 
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement through GitHub. To report a comment, issue or discussion, use GitHub's "Report content" option on it. To report something privately to the org owners, open the **Security** tab of the repo, choose **Report a vulnerability** and start the title with "Conduct report", the same private route the [security policy](SECURITY.md) uses. Please don't report conduct problems in a public issue. All complaints will be reviewed and investigated promptly and fairly.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement through GitHub. To report a comment, issue or discussion, use GitHub's "Report content" option on it. To report something privately to the org owners, open the **Security** tab of the repo, choose **Report a vulnerability** and start the title with "Conduct report", the same private route the [security policy](https://github.com/Ghost-Crafters/.github/blob/master/SECURITY.md) uses. Please don't report conduct problems in a public issue. All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the reporter of any incident.
 
