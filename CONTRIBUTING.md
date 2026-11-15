@@ -1,6 +1,6 @@
 # Contributing
 
-The public Ghost-Crafters repos are where releases, guides and bug reports live. They take bug reports and ideas. The code is kept in private repos, so pull requests to the public ones aren't accepted and will be closed.
+The public repo of each Ghost-Crafters pack or tool is where its releases, guide and bug reports live. It takes bug reports and ideas. The code is kept in a private repo, so pull requests to a pack or tool repo aren't accepted and will be closed. To suggest a change to these community files themselves, open an issue in [Ghost-Crafters/.github](https://github.com/Ghost-Crafters/.github/issues).
 
 ## Reporting a bug
 
