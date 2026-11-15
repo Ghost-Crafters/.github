@@ -91,5 +91,17 @@
       "color": "7bc67e",
       "description": "A week or more"
     }
+  ],
+  "status": [
+    {
+      "name": "waiting-for-reply",
+      "color": "c5def5",
+      "description": "Waiting on the reporter before work can go on"
+    },
+    {
+      "name": "stale",
+      "color": "ededed",
+      "description": "No reply from the reporter for 30 days, closes in 14"
+    }
   ]
 }
