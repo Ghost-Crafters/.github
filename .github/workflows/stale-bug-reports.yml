@@ -1,0 +1,44 @@
+name: Stale bug reports
+
+# Reusable workflow for the public repos. Call it from a schedule:
+#
+#   on:
+#     schedule:
+#       - cron: "17 4 * * *"
+#   jobs:
+#     stale:
+#       permissions:
+#         actions: write
+#         issues: write
+#       uses: Ghost-Crafters/.github/.github/workflows/stale-bug-reports.yml@master
+
+on:
+  workflow_call:
+
+permissions:
+  # actions/stale keeps its place between runs in the Actions cache.
+  actions: write
+  issues: write
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@4391f3da665fdf50b6810c1a66712fb9ba21aa93 # v11.0.0
+        with:
+          only-issue-labels: bug,waiting-for-reply
+          exempt-issue-labels: priority:high
+          stale-issue-label: stale
+          days-before-issue-stale: 30
+          days-before-issue-close: 14
+          days-before-pr-stale: -1
+          days-before-pr-close: -1
+          remove-stale-when-updated: true
+          remove-pr-stale-when-updated: false
+          stale-issue-message: >
+            This bug report has been waiting for a reply for 30 days. If it
+            still happens, add a comment with the details and it stays open.
+            Otherwise it closes in 14 days.
+          close-issue-message: >
+            Closed after 14 more days without a reply. Open a new report or
+            comment here if it comes back.
