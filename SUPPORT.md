@@ -6,9 +6,9 @@ Ask in the Q&A category of the repo's Discussions tab, if the repo has one. If i
 
 ## Which version you're running
 
-Bedrock and Java packs carry the version in the file name you downloaded, for example `bedrock-v1.2.0`. It also shows on the pack's page in Minecraft's settings screen, or in the tool's own settings screen if it has one. If you can't find it, say which Releases page you downloaded from and when.
+Every file you download carries its edition and version in the name, for example `item-magnet-bedrock-1.2.0.mcaddon`, and the Releases page it came from is tagged the same way (`bedrock-v1.2.0`). It also shows on the pack's page in Minecraft's settings screen, or in the tool's own settings screen if it has one. If you can't find it, say which Releases page you downloaded from and when.
 
-Also note your Minecraft version and where you play (Windows, Android, console, Realms, a dedicated server, Java on desktop). The [bug report form](.github/ISSUE_TEMPLATE/bug_report.yml) asks for both.
+Also note your Minecraft version and where you play (Windows, Android, console, Realms, a dedicated server, Java on desktop). The [bug report form](https://github.com/Ghost-Crafters/.github/blob/master/.github/ISSUE_TEMPLATE/bug_report.yml) asks for both.
 
 ## Logs to attach
 
@@ -18,4 +18,4 @@ Read through a log before you post it and remove anything private, like your nam
 
 ## Something broken
 
-Open an issue with the [bug report form](.github/ISSUE_TEMPLATE/bug_report.yml). [CONTRIBUTING.md](CONTRIBUTING.md) has the rest of what the repos take. Security problems go through the [security policy](SECURITY.md) instead.
+Open an issue with the [bug report form](https://github.com/Ghost-Crafters/.github/blob/master/.github/ISSUE_TEMPLATE/bug_report.yml). [CONTRIBUTING.md](https://github.com/Ghost-Crafters/.github/blob/master/CONTRIBUTING.md) has the rest of what the repos take. Security problems go through the [security policy](https://github.com/Ghost-Crafters/.github/blob/master/SECURITY.md) instead.
