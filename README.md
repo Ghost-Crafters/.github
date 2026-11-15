@@ -10,7 +10,7 @@ Org-wide files for Ghost-Crafters.
 | [`labels.json`](labels.json) | The label set the repos use |
 | [`tools/sync-labels.sh`](tools/sync-labels.sh) | Creates and updates the labels from `labels.json` in a repo |
 | [`.github/workflows/stale-bug-reports.yml`](.github/workflows/stale-bug-reports.yml) | Reusable workflow that closes bug reports nobody answered |
-| [`.github/workflows/edition-label.yml`](.github/workflows/edition-label.yml) | Reusable workflow that labels a bug report with its edition |
+| [`.github/workflows/edition-label.yml`](.github/workflows/edition-label.yml) | Reusable workflow that labels a bug report or feature request with its edition |
 | [`tools/check_forms.py`](tools/check_forms.py) | Checks the issue forms. The [Forms workflow](.github/workflows/forms.yml) runs it on every pull request |
 
 The security policy and the issue forms apply to every repo in the org that has none of its own ([how GitHub picks them up](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/creating-a-default-community-health-file)), so a change here shows up everywhere at once. Changes go through a pull request like in any other repo.
