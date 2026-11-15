@@ -1,0 +1,49 @@
+name: Edition label
+
+# Reusable workflow for the public repos. Call it when an issue is opened or edited:
+#
+#   on:
+#     issues:
+#       types: [opened, edited]
+#   jobs:
+#     edition:
+#       permissions:
+#         issues: write
+#       uses: Ghost-Crafters/.github/.github/workflows/edition-label.yml@master
+
+on:
+  workflow_call:
+
+permissions:
+  issues: write
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    steps:
+      # Only the parser from this repo is checked out. The caller's code and the issue text are never run.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: Ghost-Crafters/.github
+          ref: master
+          sparse-checkout: tools/edition_label.py
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
+      - name: Add the edition label
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: |
+          label=$(python3 tools/edition_label.py)
+          if [ -z "$label" ]; then
+            echo "No edition answer in the issue, nothing to label."
+            exit 0
+          fi
+          for other in edition:bedrock edition:java; do
+            if [ "$other" != "$label" ]; then
+              gh issue edit "$ISSUE_NUMBER" --remove-label "$other" 2>/dev/null || true
+            fi
+          done
+          gh issue edit "$ISSUE_NUMBER" --add-label "$label"
