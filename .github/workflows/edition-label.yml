@@ -39,24 +39,24 @@ jobs:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: |
           # Read the current issue, not the event payload, so a queued older event can't bring back an old answer.
+          gh issue view "$ISSUE_NUMBER" --json body,labels > "$RUNNER_TEMP/issue.json"
           body_file="$RUNNER_TEMP/issue-body.txt"
-          gh issue view "$ISSUE_NUMBER" --json body --jq .body > "$body_file"
+          jq -r .body "$RUNNER_TEMP/issue.json" > "$body_file"
+          attached=$(jq -r '.labels[].name' "$RUNNER_TEMP/issue.json")
           label=$(python3 tools/edition_label.py "$body_file")
-          if [ -z "$label" ]; then
-            # Only bug reports from the form have the Edition heading. Without an answer, drop any edition label.
-            if ! grep -q '^### Edition[[:space:]]*$' "$body_file"; then
-              echo "Not a bug report from the form, nothing to label."
-              exit 0
-            fi
-            echo "No edition answer in the report, removing edition labels."
-            for other in edition:bedrock edition:java; do
-              gh issue edit "$ISSUE_NUMBER" --remove-label "$other" 2>/dev/null || true
-            done
+          # Only bug reports from the form have the Edition heading; anything else is left alone.
+          if [ -z "$label" ] && ! grep -q '^### Edition[[:space:]]*$' "$body_file"; then
+            echo "Not a bug report from the form, nothing to label."
             exit 0
           fi
+          # Only labels the issue has are removed, so a failed removal is a real error and stops the job.
           for other in edition:bedrock edition:java; do
-            if [ "$other" != "$label" ]; then
-              gh issue edit "$ISSUE_NUMBER" --remove-label "$other" 2>/dev/null || true
+            if [ "$other" != "$label" ] && grep -qxF -- "$other" <<< "$attached"; then
+              gh issue edit "$ISSUE_NUMBER" --remove-label "$other"
             fi
           done
+          if [ -z "$label" ]; then
+            echo "No edition answer in the report, edition labels removed."
+            exit 0
+          fi
           gh issue edit "$ISSUE_NUMBER" --add-label "$label"

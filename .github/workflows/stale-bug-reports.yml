@@ -8,6 +8,7 @@ name: Stale bug reports
 #   jobs:
 #     stale:
 #       permissions:
+#         actions: write
 #         issues: write
 #       uses: Ghost-Crafters/.github/.github/workflows/stale-bug-reports.yml@master
 
@@ -15,6 +16,8 @@ on:
   workflow_call:
 
 permissions:
+  # actions/stale keeps its place between runs in the Actions cache.
+  actions: write
   issues: write
 
 jobs:

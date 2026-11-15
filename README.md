@@ -43,6 +43,7 @@ on:
 jobs:
   stale:
     permissions:
+      actions: write
       issues: write
     uses: Ghost-Crafters/.github/.github/workflows/stale-bug-reports.yml@master
 ```
@@ -51,7 +52,7 @@ Run `tools/sync-labels.sh` in the repo first so both labels exist.
 
 ## Edition labels
 
-The reusable edition workflow reads the Edition answer from a new bug report and adds `edition:bedrock` or `edition:java`. If the report is edited and the answer changes, the old edition label comes off. A report without an answer gets no label. The parser is [`tools/edition_label.py`](tools/edition_label.py). It takes the issue text from an environment variable and only ever treats it as data.
+The reusable edition workflow reads the Edition answer from a new bug report and adds `edition:bedrock` or `edition:java`. If the report is edited and the answer changes, the old edition label comes off, and if the answer is removed both come off. Runs for one issue wait for each other and read the issue as it is now, so a late run can't bring back an old answer. The parser is [`tools/edition_label.py`](tools/edition_label.py). It reads the issue text from a file and only ever treats it as data.
 
 ```yaml
 name: Edition label
