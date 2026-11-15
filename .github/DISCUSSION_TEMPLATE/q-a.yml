@@ -1,0 +1,31 @@
+title: "[Question] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Ask about using a pack, add-on or tool. If something is broken, use the bug report form in Issues instead, and security problems go through the repo's Security tab. [SUPPORT.md](https://github.com/Ghost-Crafters/.github/blob/master/SUPPORT.md) shows where to find your version and logs.
+  - type: textarea
+    id: question
+    attributes:
+      label: Your question
+    validations:
+      required: true
+  - type: dropdown
+    id: edition
+    attributes:
+      label: Edition
+      options:
+        - Bedrock
+        - Java
+        - Not sure
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version of the pack or tool
+      placeholder: 0.1.0
+  - type: textarea
+    id: tried
+    attributes:
+      label: What you already tried
