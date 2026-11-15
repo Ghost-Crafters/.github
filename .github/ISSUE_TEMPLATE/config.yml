@@ -6,3 +6,6 @@ contact_links:
   - name: All Ghost-Crafters projects
     url: https://github.com/Ghost-Crafters
     about: Every pack, add-on and tool, each with its own releases.
+  - name: Help and questions
+    url: https://github.com/Ghost-Crafters/.github/blob/master/SUPPORT.md
+    about: How to find your version, which logs to attach and where to ask a question.

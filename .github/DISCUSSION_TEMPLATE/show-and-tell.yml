@@ -1,0 +1,30 @@
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Show a build, a world or a setup that uses one of our packs or tools. Screenshots and short clips are welcome.
+  - type: input
+    id: project
+    attributes:
+      label: Which pack or tool
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What you made
+      description: Tell us about it. Drag screenshots or a video into this box to attach them.
+    validations:
+      required: true
+  - type: dropdown
+    id: edition
+    attributes:
+      label: Edition
+      options:
+        - Bedrock
+        - Java
+  - type: textarea
+    id: details
+    attributes:
+      label: How you set it up
+      description: Settings, other packs or anything that would help someone build the same thing.
