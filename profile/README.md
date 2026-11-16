@@ -7,3 +7,5 @@ Every project has a public repo with its releases, a guide and the place to repo
 Found a bug? Open an issue in that project's repo. Security problems go through the repo's Security tab instead, so they stay private until they're fixed. The [security policy](https://github.com/Ghost-Crafters/.github/blob/master/SECURITY.md) says how.
 
 NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.
+
+[![Back to top](https://img.shields.io/badge/Back%20to%20top-222?style=plastic&logo=github)](#ghost-crafters)
