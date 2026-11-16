@@ -7,6 +7,12 @@ Org-wide files for Ghost-Crafters.
 | [`profile/README.md`](profile/README.md) | The org page at [github.com/Ghost-Crafters](https://github.com/Ghost-Crafters) |
 | [`SECURITY.md`](SECURITY.md) | Security policy for every repo that doesn't have its own |
 | [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE) | Bug report and feature request forms, plus the New issue page links, for every repo without its own templates |
+| [`CONTRIBUTING.md`](CONTRIBUTING.md) | How to report a bug or suggest an idea. Pack and tool repos don't take pull requests |
+| [`SUPPORT.md`](SUPPORT.md) | Where to ask questions, how to find your version and which logs to attach |
+| [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) | The Contributor Covenant, with how to report a conduct problem |
+| [`RELEASE_NOTES_TEMPLATE.md`](RELEASE_NOTES_TEMPLATE.md) | Layout for release notes, with a section per edition |
+| [`.github/pull_request_template.md`](.github/pull_request_template.md) | Default text for a pull request: what changed, the issue it fixes and how you checked it |
+| [`.github/DISCUSSION_TEMPLATE/`](.github/DISCUSSION_TEMPLATE) | Forms for the Q&A and Show and tell discussion categories |
 | [`labels.json`](labels.json) | The label set the repos use |
 | [`tools/sync-labels.sh`](tools/sync-labels.sh) | Creates and updates the labels from `labels.json` in a repo |
 | [`.github/workflows/stale-bug-reports.yml`](.github/workflows/stale-bug-reports.yml) | Reusable workflow that closes bug reports nobody answered |
