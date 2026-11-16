@@ -19,4 +19,5 @@ jobs:
           python-version: "3.14"
       - run: pip install pyyaml==6.0.3
       - run: python3 tools/check_forms.py
+      - run: python3 tools/check_docs.py
       - run: python3 -m unittest discover -s tools -v

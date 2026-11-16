@@ -18,15 +18,23 @@ Org-wide files for Ghost-Crafters.
 | [`.github/workflows/stale-bug-reports.yml`](.github/workflows/stale-bug-reports.yml) | Reusable workflow that closes bug reports nobody answered |
 | [`.github/workflows/edition-label.yml`](.github/workflows/edition-label.yml) | Reusable workflow that labels a bug report or feature request with its edition |
 | [`tools/check_forms.py`](tools/check_forms.py) | Checks the issue forms. The [Forms workflow](.github/workflows/forms.yml) runs it on every pull request |
+| [`tools/check_docs.py`](tools/check_docs.py) | Checks the contents list and the Back to top buttons in the docs. The Forms workflow runs it too |
 
 The security policy and the issue forms apply to every repo in the org that has none of its own ([how GitHub picks them up](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/creating-a-default-community-health-file)), so a change here shows up everywhere at once. Changes go through a pull request like in any other repo.
 
-Run the form check locally with:
+Run the form and doc checks locally with:
 
 ```sh
 python3 tools/check_forms.py
+python3 tools/check_docs.py
 python3 -m unittest discover -s tools
 ```
+
+## Contents
+
+- [Syncing labels](#syncing-labels)
+- [Stale bug reports](#stale-bug-reports)
+- [Edition labels](#edition-labels)
 
 ## Syncing labels
 
@@ -36,6 +44,8 @@ tools/sync-labels.sh Ghost-Crafters/some-repo
 ```
 
 It needs the `gh` CLI signed in with access to the repo. Every group in `labels.json` is synced, and a second run changes nothing. Labels that aren't in the file are left alone. `--prune` deletes them, but never one that still has issues or pull requests on it. `--dry-run` prints each change and writes nothing. Per-repo labels such as `area:*` aren't in the file, so they are never touched without `--prune`.
+
+[![Back to top](https://img.shields.io/badge/Back%20to%20top-222?style=plastic&logo=github)](#github)
 
 ## Stale bug reports
 
@@ -56,6 +66,8 @@ jobs:
 
 Run `tools/sync-labels.sh` in the repo first so both labels exist.
 
+[![Back to top](https://img.shields.io/badge/Back%20to%20top-222?style=plastic&logo=github)](#github)
+
 ## Edition labels
 
 The reusable edition workflow reads the Edition answer from a new bug report or feature request and adds `edition:bedrock` or `edition:java`. If the issue is edited and the answer changes, the old edition label comes off, and if the answer is removed both come off. Runs for one issue wait for each other and read the issue as it is now, so a late run can't bring back an old answer. The parser is [`tools/edition_label.py`](tools/edition_label.py). It reads the issue text from a file and only ever treats it as data.
@@ -71,3 +83,5 @@ jobs:
       issues: write
     uses: Ghost-Crafters/.github/.github/workflows/edition-label.yml@master
 ```
+
+[![Back to top](https://img.shields.io/badge/Back%20to%20top-222?style=plastic&logo=github)](#github)

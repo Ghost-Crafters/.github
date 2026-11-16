@@ -9,3 +9,5 @@ Every report is read and handled in order of severity. Problems that can damage 
 Fixes go into the latest release and the latest pre-release of each edition.
 
 Worth reporting: anything that can damage or wipe a world or server, leak player data, or let a player do something they don't have permission for, like running operator commands or reaching other players' items.
+
+[![Back to top](https://img.shields.io/badge/Back%20to%20top-222?style=plastic&logo=github)](#security)
