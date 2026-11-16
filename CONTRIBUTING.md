@@ -17,21 +17,15 @@ Check the open issues first. If yours is already there, add what you know to it 
 
 Security problems don't go in a public issue. Follow the [security policy](https://github.com/Ghost-Crafters/.github/blob/master/SECURITY.md).
 
-[![Back to top](https://img.shields.io/badge/Back%20to%20top-222?style=plastic&logo=github)](#contributing)
-
 ## Ideas
 
 Use the [feature request form](https://github.com/Ghost-Crafters/.github/blob/master/.github/ISSUE_TEMPLATE/feature_request.yml) in the same repo. Say what you're trying to do in your world or on your server, not only what you'd like added.
-
-[![Back to top](https://img.shields.io/badge/Back%20to%20top-222?style=plastic&logo=github)](#contributing)
 
 ## How releases are named
 
 Release tags look like `<edition>-vX.Y.Z`, where the edition is `bedrock`, `java` or `universal` and X.Y.Z is the version, for example `bedrock-v1.2.0`. Each edition is versioned on its own, so a Java release doesn't have to match the Bedrock one.
 
 Before a release goes out, it gets pre-releases on the same Releases page: alpha first, then beta, then rc (release candidate). They're marked as pre-releases, so back up your worlds before you try one. Each release is written up with the [release notes template](https://github.com/Ghost-Crafters/.github/blob/master/RELEASE_NOTES_TEMPLATE.md).
-
-[![Back to top](https://img.shields.io/badge/Back%20to%20top-222?style=plastic&logo=github)](#contributing)
 
 ## Conduct
 

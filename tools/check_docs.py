@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Check the navigation in the Markdown docs: a Contents list that links real headings, and a
-Back to top button at the end of every `##` section."""
+"""Check the navigation in the Markdown docs: a Contents list that links real headings, and one
+Back to top button as the last line of the doc."""
 import re
 import sys
 from pathlib import Path
@@ -62,12 +62,7 @@ def check_file(path, name=None):
     button = BUTTON.format(title_slug)
     known = slugs_of(found)
     sections = [h for h in found if h[1] == 2]
-    ends = [h[0] for h in found if h[1] <= 2]
     problems = []
-
-    def section_end(start):
-        later = [n for n in ends if n > start]
-        return (later[0] - 1) if later else len(lines)
 
     def last_content(start, stop):
         for n in range(stop, start, -1):
@@ -81,11 +76,10 @@ def check_file(path, name=None):
     if len(others) >= 2 and not contents:
         problems.append(f"{name}:{titles[0][0]}: no ## Contents section")
     for number, _, _ in contents:
-        stop = section_end(number)
+        later = [h[0] for h in found if h[1] <= 2 and h[0] > number]
+        stop = (later[0] - 1) if later else len(lines)
         listed = set()
         for n in range(number + 1, stop + 1):
-            if button in lines[n - 1]:
-                problems.append(f"{name}:{n}: the Contents section has a button")
             for target in LINK.findall(lines[n - 1]):
                 listed.add(target)
                 if target not in known:
@@ -93,15 +87,12 @@ def check_file(path, name=None):
         for line_no, _, title in others:
             if slug(title) not in listed:
                 problems.append(f"{name}:{line_no}: {title!r} is not in Contents")
-    if others:
-        for number, _, title in others:
-            end = last_content(number, section_end(number))
-            if lines[end - 1].strip() != button:
-                problems.append(f"{name}:{end}: section {title!r} does not end with the Back to top button for #{title_slug}")
-    else:
-        end = last_content(titles[0][0], len(lines))
-        if lines[end - 1].strip() != button:
-            problems.append(f"{name}:{end}: doc does not end with the Back to top button for #{title_slug}")
+    end = last_content(titles[0][0], len(lines))
+    if lines[end - 1].strip() != button:
+        problems.append(f"{name}:{end}: doc does not end with the Back to top button for #{title_slug}")
+    for n, line in enumerate(lines, 1):
+        if button in line and n != end:
+            problems.append(f"{name}:{n}: extra Back to top button, only the last line has one")
     return problems
 
 
