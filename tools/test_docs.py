@@ -20,8 +20,6 @@ Intro.
 
 Text.
 
-{BUTTON}
-
 ## Two's
 
 Text.
@@ -49,10 +47,15 @@ class CheckDocsTest(unittest.TestCase):
     def test_good_doc_passes(self):
         self.assertEqual(self.run_check(GOOD), [])
 
-    def test_missing_button_reports_line(self):
-        problems = self.run_check(GOOD.replace(f"Text.\n\n{BUTTON}\n\n## Two", "Text.\n\n## Two"))
+    def test_missing_button_reports_last_line(self):
+        problems = self.run_check(GOOD.replace(f"\n{BUTTON}\n", ""))
         self.assertEqual(len(problems), 1)
-        self.assertTrue(problems[0].startswith("GUIDE.md:12:"))
+        self.assertTrue(problems[0].startswith("GUIDE.md:16:"))
+
+    def test_button_after_each_section_fails(self):
+        problems = self.run_check(GOOD.replace("Text.\n\n## Two", f"Text.\n\n{BUTTON}\n\n## Two"))
+        self.assertEqual(len(problems), 1)
+        self.assertIn("extra Back to top button", problems[0])
 
     def test_button_with_wrong_anchor_fails(self):
         problems = self.run_check(GOOD.replace("(#guide)", "(#other)", 1))
@@ -66,9 +69,9 @@ class CheckDocsTest(unittest.TestCase):
         problems = self.run_check(GOOD.replace("- [One](#one)\n", ""))
         self.assertEqual(len(problems), 1)
 
-    def test_contents_with_button_fails(self):
+    def test_button_in_contents_fails(self):
         problems = self.run_check(GOOD.replace("- [Two's](#twos)\n", f"- [Two's](#twos)\n\n{BUTTON}\n"))
-        self.assertTrue(any("Contents section has a button" in p for p in problems))
+        self.assertEqual(len(problems), 1)
 
     def test_single_section_needs_button_but_no_contents(self):
         self.assertEqual(self.run_check(f"# Guide\n\nText.\n\n{BUTTON}\n"), [])
@@ -79,7 +82,7 @@ class CheckDocsTest(unittest.TestCase):
         self.assertEqual(self.run_check(text), [])
 
     def test_headings_in_code_fences_are_ignored(self):
-        text = GOOD.replace("Text.\n\n" + BUTTON + "\n\n## Two", "```\n## Fake\n```\n\n" + BUTTON + "\n\n## Two", 1)
+        text = GOOD.replace("Text.\n\n## Two", "```\n## Fake\n```\n\n## Two", 1)
         self.assertEqual(self.run_check(text), [])
 
 

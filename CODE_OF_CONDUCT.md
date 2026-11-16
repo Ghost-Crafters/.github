@@ -16,8 +16,6 @@ We as members, contributors, and leaders pledge to make participation in our com
 
 We pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community.
 
-[![Back to top](https://img.shields.io/badge/Back%20to%20top-222?style=plastic&logo=github)](#contributor-covenant-code-of-conduct)
-
 ## Our Standards
 
 Examples of behavior that contributes to a positive environment for our community include:
@@ -36,29 +34,21 @@ Examples of unacceptable behavior include:
 * Publishing others' private information, such as a physical or email address, without their explicit permission
 * Other conduct which could reasonably be considered inappropriate in a professional setting
 
-[![Back to top](https://img.shields.io/badge/Back%20to%20top-222?style=plastic&logo=github)](#contributor-covenant-code-of-conduct)
-
 ## Enforcement Responsibilities
 
 Community leaders are responsible for clarifying and enforcing our standards of acceptable behavior and will take appropriate and fair corrective action in response to any behavior that they deem inappropriate, threatening, offensive, or harmful.
 
 Community leaders have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, and will communicate reasons for moderation decisions when appropriate.
 
-[![Back to top](https://img.shields.io/badge/Back%20to%20top-222?style=plastic&logo=github)](#contributor-covenant-code-of-conduct)
-
 ## Scope
 
 This Code of Conduct applies within all community spaces, and also applies when an individual is officially representing the community in public spaces. Examples of representing our community include using an official e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event.
-
-[![Back to top](https://img.shields.io/badge/Back%20to%20top-222?style=plastic&logo=github)](#contributor-covenant-code-of-conduct)
 
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement through GitHub. To report a comment, issue or discussion, use GitHub's "Report content" option on it. To report something privately to the org owners, open the **Security** tab of the repo, choose **Report a vulnerability** and start the title with "Conduct report", the same private route the [security policy](https://github.com/Ghost-Crafters/.github/blob/master/SECURITY.md) uses. Please don't report conduct problems in a public issue. All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the reporter of any incident.
-
-[![Back to top](https://img.shields.io/badge/Back%20to%20top-222?style=plastic&logo=github)](#contributor-covenant-code-of-conduct)
 
 ## Enforcement Guidelines
 
@@ -87,8 +77,6 @@ Community leaders will follow these Community Impact Guidelines in determining t
 **Community Impact**: Demonstrating a pattern of violation of community standards, including sustained inappropriate behavior, harassment of an individual, or aggression toward or disparagement of classes of individuals.
 
 **Consequence**: A permanent ban from any sort of public interaction within the community.
-
-[![Back to top](https://img.shields.io/badge/Back%20to%20top-222?style=plastic&logo=github)](#contributor-covenant-code-of-conduct)
 
 ## Attribution
 

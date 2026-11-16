@@ -45,8 +45,6 @@ tools/sync-labels.sh Ghost-Crafters/some-repo
 
 It needs the `gh` CLI signed in with access to the repo. Every group in `labels.json` is synced, and a second run changes nothing. Labels that aren't in the file are left alone. `--prune` deletes them, but never one that still has issues or pull requests on it. `--dry-run` prints each change and writes nothing. Per-repo labels such as `area:*` aren't in the file, so they are never touched without `--prune`.
 
-[![Back to top](https://img.shields.io/badge/Back%20to%20top-222?style=plastic&logo=github)](#github)
-
 ## Stale bug reports
 
 Public repos can call the reusable workflow to close bug reports that are waiting on the reporter. An issue labeled both `bug` and `waiting-for-reply` gets the `stale` label after 30 days without activity and is closed 14 days later. Any comment removes `stale` again, and `priority:high` issues are skipped. Pull requests and other issues are ignored. Add the `waiting-for-reply` label by hand when you ask the reporter a question.
@@ -65,8 +63,6 @@ jobs:
 ```
 
 Run `tools/sync-labels.sh` in the repo first so both labels exist.
-
-[![Back to top](https://img.shields.io/badge/Back%20to%20top-222?style=plastic&logo=github)](#github)
 
 ## Edition labels
 
