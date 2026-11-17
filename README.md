@@ -11,6 +11,7 @@ Org-wide files for Ghost-Crafters.
 | [`SUPPORT.md`](SUPPORT.md) | Where to ask questions, how to find your version and which logs to attach |
 | [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) | The Contributor Covenant, with how to report a conduct problem |
 | [`RELEASE_NOTES_TEMPLATE.md`](RELEASE_NOTES_TEMPLATE.md) | Layout for release notes, with a section per edition |
+| [`SECURITY_TEMPLATE.md`](SECURITY_TEMPLATE.md) | Each public project repo's own `SECURITY.md`, with `<Project>` and `<repo>` filled in, so its report button opens that repo's form |
 | [`.github/pull_request_template.md`](.github/pull_request_template.md) | Default text for a pull request: what changed, the issue it fixes and how you checked it |
 | [`.github/DISCUSSION_TEMPLATE/`](.github/DISCUSSION_TEMPLATE) | Forms for the Q&A and Show and tell discussion categories |
 | [`labels.json`](labels.json) | The label set the repos use |
