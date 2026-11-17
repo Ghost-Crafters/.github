@@ -1,5 +1,10 @@
 # .github
 
+<p align="center">
+  <a href="https://github.com/Ghost-Crafters/.github/actions/workflows/forms.yml"><img alt="Forms" src="https://github.com/Ghost-Crafters/.github/actions/workflows/forms.yml/badge.svg"></a>
+  <a href="https://www.python.org/downloads/"><img alt="Python 3.14" src="https://img.shields.io/badge/python-3.14-3776AB?logo=python&amp;logoColor=white"></a>
+</p>
+
 Org-wide files for Ghost-Crafters.
 
 | Path | What it does |
